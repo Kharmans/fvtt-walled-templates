@@ -82,7 +82,7 @@ export function canvasVisibilityPolygons(tokens) {
   if ( globalLightEnabled ) return [...visionLightShapes, ...visionSightShapes];
 
   // Combine the light sources, then intersect each vision light shape with the combined light sources.
-  const ClipperPaths = CONFIG[MODULE_ID].ClipperPaths ?? CONFIG.GeometryLib.ClipperPaths;
+  const ClipperPaths = CONFIG.GeometryLib.CONFIG.ClipperPaths;
   const lightPaths = ClipperPaths.fromPolygons(lightShapes).combine();
   const out = visionSightShapes;
   visionLightShapes.forEach(s => {
