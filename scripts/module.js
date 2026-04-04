@@ -27,7 +27,6 @@ import { MODULE_ID, FLAGS, TEMPLATES } from "./const.js";
 
 // Patches
 import { initializePatching, registerAutotargeting, PATCHER } from "./patching.js";
-import { registerGeometry } from "./geometry/registration.js";
 
 // API
 import { ClockwiseSweepShape } from "./ClockwiseSweepShape.js";
@@ -45,6 +44,9 @@ import { WalledTemplateRoundedRectangle } from "./template_shapes/WalledTemplate
 // Self-executing scripts for hooks
 import "./changelog.js";
 
+// Load the geometry library.
+import "./geometry/registration.js";
+
 // Note: Basic system hooks
 
 /**
@@ -57,7 +59,6 @@ Hooks.once("devModeReady", ({ registerPackageDebugFlag }) => {
 
 Hooks.once("init", function() {
   log("Initializing...");
-  registerGeometry();
 
   // Set CONFIGS used by this module.
   CONFIG[MODULE_ID] = {
@@ -95,7 +96,7 @@ Hooks.once("init", function() {
      * Which version of Clipper to use.
      * @type{CONFIG.GeometryLib.ClipperPaths|CONFIG.GeometryLib.Clipper2Paths}
      */
-    ClipperPaths: CONFIG.GeometryLib.ClipperPaths,
+    ClipperPaths: CONFIG.GeometryLib.CONFIG.ClipperPaths,
   };
 
   initializeWalledTemplates(game.system.id);
