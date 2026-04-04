@@ -1,3 +1,6 @@
+## 0.9.5
+Update to libGeometry 0.5.
+
 ## 0.9.4
 Fix for when a GM-created template is attached to user token and then user moves the token.
 
