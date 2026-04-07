@@ -265,6 +265,7 @@ Hooks.on("canvasReady", function(canvas) {
     // Add flag for attached template.
     const promises = [];
     for ( const token of canvas.tokens.placeables ) {
+      if ( !token.actor ) continue;
       for ( const effect of token.actor.effects ) {
         if ( !effect.origin?.includes("MeasuredTemplate") ) continue;
         const attachedTemplate = fromUuidSync(effect.origin)?.object;
